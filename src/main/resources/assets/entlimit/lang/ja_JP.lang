@@ -1,0 +1,15 @@
+# This language file must be UTF-8 without BOM and LF!
+command.entlimit.usage=/entlimit <list|set [dimension id] <limit>|clear [dimension id]|vanish>
+command.entlimit.listhead=§b=========上限設定=========§r
+command.entlimit.listfoot=§b==========================§r
+command.entlimit.diminfo=ディメンション:%1$s 上限:%2$s
+command.entlimit.diminfodef=ディメンション:%s 無制限
+command.entlimit.op=%sにはOP権限がありません。
+command.entlimit.baddimid=%sはディメンションIDではありません。
+command.entlimit.badnum=%sは数値として解釈できません。
+command.entlimit.nodimid=ディメンションIDを指定する必要があります。
+command.endlimit.badcmd=文法エラー
+command.entlimit.set=ディメンション%1$sのエンティティ上限を%2$sに設定しました。
+command.entlimit.clear=ディメンション%sのエンティティ上限を撤廃しました。
+command.entlimit.unknownsubcmd=不明なサブコマンド%sです。
+command.entlimit.vanished=%sのエンティティを消去しました。
