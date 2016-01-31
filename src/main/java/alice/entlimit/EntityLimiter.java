@@ -28,6 +28,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 @Mod(
@@ -49,9 +50,14 @@ public final class EntityLimiter
 	@SidedProxy(clientSide = "alice.entlimit.CommonProxy", serverSide = "alice.entlimit.CommonProxy")
 	public static CommonProxy PROXY;
 
+	private Configuration config;
+
 	@Mod.EventHandler
 	public void forgePreInitialization(FMLPreInitializationEvent event)
 	{
+		this.config = new Configuration(event.getSuggestedConfigurationFile());
+		this.config.load();
+
 		this.meta.description = "ディメンション単位でエンティティの上限を設定するMODです。";
 		this.meta.url = "http://a1lic.net/";
 		this.meta.authorList.add("alice");
@@ -103,8 +109,8 @@ public final class EntityLimiter
 			return;
 		}
 
-		Integer limit = EntityLimitManager.limitsOfDimension.get(event.world.provider.dimensionId);
-		if((limit == null) || (limit.intValue() < 0))
+		int limit = EntityLimitManager.getLimitForWorld(event.world);
+		if(limit < 0)
 		{
 			// 上限が設定されていないか、不正な値の場合は何もしない
 		}
@@ -131,8 +137,8 @@ public final class EntityLimiter
 			throw new IllegalArgumentException("countは要素数が少なくとも1つ必要です");
 		}
 
-		Integer entityLimit = EntityLimitManager.limitsOfDimension.get(world.provider.dimensionId);
-		if((entityLimit == null) || (entityLimit.intValue() < 1))
+		int entityLimit = EntityLimitManager.getLimitForWorld(world);
+		if(entityLimit < 0)
 		{
 			return;
 		}
