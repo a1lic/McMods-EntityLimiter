@@ -2,6 +2,7 @@ package alice.entlimit;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import net.minecraft.command.CommandException;
@@ -57,20 +58,18 @@ public final class CommandHandler implements ICommand
 		switch(action.charAt(0))
 		{
 		case 'L': // list
-			Integer[] dimensions = DimensionManager.getStaticDimensionIDs();
 			sender.addChatMessage(new ChatComponentTranslation("command.entlimit.listhead"));
-			for(Integer dim : dimensions)
-			{
-				Integer limitOfDimension = EntityLimitManager.limitsOfDimension.get(dim);
-				if(limitOfDimension == null)
+			Map<Integer, Integer> m = EntityLimitManager.getLimitInWorlds();
+			m.forEach((d, l) -> {
+				if(l.intValue() == -1)
 				{
-					sender.addChatMessage(new ChatComponentTranslation("command.entlimit.diminfodef", dim));
+					sender.addChatMessage(new ChatComponentTranslation("command.entlimit.diminfodef", d));
 				}
 				else
 				{
-					sender.addChatMessage(new ChatComponentTranslation("command.entlimit.diminfo", dim, limitOfDimension));
+					sender.addChatMessage(new ChatComponentTranslation("command.entlimit.diminfo", d, l));
 				}
-			}
+			});
 			sender.addChatMessage(new ChatComponentTranslation("command.entlimit.listfoot"));
 			break;
 		case 'S': // set
@@ -140,7 +139,7 @@ public final class CommandHandler implements ICommand
 			{
 				throw new CommandException("command.endlimit.badcmd");
 			}
-			EntityLimitManager.limitsOfDimension.put(dimension, limit);
+			EntityLimitManager.setLimitForWorld(dimension, limit);
 			sender.addChatMessage(new ChatComponentTranslation("command.entlimit.set", new Integer(dimension), new Integer(limit)));
 			break;
 		case 'C': // clear
@@ -180,7 +179,7 @@ public final class CommandHandler implements ICommand
 				WorldProvider provider = world.provider;
 				dimension = provider.dimensionId;
 			}
-			EntityLimitManager.limitsOfDimension.remove(dimension);
+			EntityLimitManager.removeLimitForWorld(dimension);
 			sender.addChatMessage(new ChatComponentTranslation("command.entlimit.clear", new Integer(dimension)));
 			break;
 		case 'V': // vanish

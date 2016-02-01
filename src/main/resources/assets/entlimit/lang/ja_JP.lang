@@ -4,6 +4,7 @@ command.entlimit.listhead=§b=========上限設定=========§r
 command.entlimit.listfoot=§b==========================§r
 command.entlimit.diminfo=ディメンション:%1$s 上限:%2$s
 command.entlimit.diminfodef=ディメンション:%s 無制限
+command.entlimit.diminfono=ディメンション:%s 不明
 command.entlimit.op=%sにはOP権限がありません。
 command.entlimit.baddimid=%sはディメンションIDではありません。
 command.entlimit.badnum=%sは数値として解釈できません。

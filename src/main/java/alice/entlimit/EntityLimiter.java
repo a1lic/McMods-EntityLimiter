@@ -34,7 +34,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 @Mod(
 	modid = "entitylimiter",
 	name = "Entity Limiter",
-	version = "0.2",
+	version = "0.3",
 	dependencies = "required-after:Forge@[10.13.4.1558,)"
 )
 public final class EntityLimiter

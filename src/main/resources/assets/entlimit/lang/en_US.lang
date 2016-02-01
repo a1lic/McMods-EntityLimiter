@@ -4,6 +4,7 @@ command.entlimit.listhead=§b========Limit info========§r
 command.entlimit.listfoot=§b==========================§r
 command.entlimit.diminfo=Dim:%1$s Limit:%2$s
 command.entlimit.diminfodef=Dim:%s Unlimit
+command.entlimit.diminfono=Dim:%s ???
 command.entlimit.op=No operate permission for %s
 command.entlimit.baddimid=Bad dimension ID %s
 command.entlimit.badnum=Bad number %s
