@@ -5,7 +5,7 @@ import net.minecraft.command.ICommand;
 
 public class CommonProxy
 {
-	private final ICommand cmd = new CommandHandler();
+	private final ICommand cmd = new CommandEntLimit();
 
 	public void preInit()
 	{

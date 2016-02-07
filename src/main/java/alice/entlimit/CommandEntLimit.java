@@ -17,7 +17,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 
-public final class CommandHandler implements ICommand
+public final class CommandEntLimit implements ICommand
 {
 	@Override
 	public int compareTo(Object o)
