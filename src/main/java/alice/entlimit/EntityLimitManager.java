@@ -13,7 +13,8 @@ import scala.actors.threadpool.Arrays;
 
 public final class EntityLimitManager
 {
-	public static final Integer UNLIMITED = new Integer(-1);
+	public static final int UNLIMITED = -1;
+	public static final Integer UNLIMITED_CONST = new Integer(UNLIMITED);
 	private static final Map<Integer, Integer> PENDING_CHANGES = new HashMap<Integer, Integer>();
 
 	public static Map<Integer, Integer> getLimitInWorlds()
@@ -32,25 +33,25 @@ public final class EntityLimitManager
 		if(nbt.hasKey("Limits"))
 		{
 			int limit = nbt.getInteger("Limits");
-			if(limit < UNLIMITED.intValue())
+			if(limit < UNLIMITED)
 			{
-				limit = UNLIMITED.intValue();
-				nbt.setInteger("Limits", UNLIMITED.intValue());
+				limit = UNLIMITED;
+				nbt.setInteger("Limits", UNLIMITED);
 				d.markDirty();
 			}
 			return limit;
 		}
 		else
 		{
-			return UNLIMITED.intValue();
+			return UNLIMITED;
 		}
 	}
 
 	public static void setLimitForWorld(World world, int newLimit)
 	{
-		if(newLimit < UNLIMITED.intValue())
+		if(newLimit < UNLIMITED)
 		{
-			newLimit = UNLIMITED.intValue();
+			newLimit = UNLIMITED;
 		}
 
 		WorldData d = WorldData.forWorld(world);
@@ -59,9 +60,9 @@ public final class EntityLimitManager
 		if(nbt.hasKey("Limits"))
 		{
 			int limit = nbt.getInteger("Limits");
-			if(limit < UNLIMITED.intValue())
+			if(limit < UNLIMITED)
 			{
-				limit = UNLIMITED.intValue();
+				limit = UNLIMITED;
 			}
 			if(newLimit != limit)
 			{
@@ -96,6 +97,6 @@ public final class EntityLimitManager
 
 	public static void removeLimitForWorld(int dim)
 	{
-		setLimitForWorld(dim, UNLIMITED.intValue());
+		setLimitForWorld(dim, UNLIMITED);
 	}
 }
